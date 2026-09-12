@@ -1,0 +1,14 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.games.*`.
+pub mod gameevent;
+pub mod gameparametervalues;
+pub mod gamerestart;
+pub mod getinstancelist;
+pub mod initiatecreategame;
+pub mod initiatejoingame;
+pub mod kickplayer;
+pub mod leavegame;
+pub mod observeinstance;
+pub mod requestfullgamestatus;
+pub mod startgame;
+pub mod unobserveinstance;
+pub mod watchgame;

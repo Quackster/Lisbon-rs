@@ -1,0 +1,9 @@
+//! Mirrors `net.h4bbo.lisbon.game.games.battleball.powerups.*`.
+pub mod bomb_handle;
+pub mod cannon_handle;
+pub mod harlequin_handle;
+pub mod lightbulb_handle;
+pub mod nail_box_handle;
+pub mod spring_handle;
+pub mod torch_handle;
+pub mod vacuum_handle;

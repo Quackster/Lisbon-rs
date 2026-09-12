@@ -1,0 +1,13 @@
+//! Mirrors `net.h4bbo.lisbon.game.room.*`.
+pub mod entities;
+pub mod enums;
+pub mod handlers;
+pub mod managers;
+pub mod mapping;
+pub mod models;
+pub mod public_rooms;
+pub mod room;
+pub mod room_data;
+pub mod room_manager;
+pub mod room_user_status;
+pub mod tasks;

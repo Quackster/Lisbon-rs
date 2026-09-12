@@ -1,0 +1,14 @@
+//! Mirrors `net.h4bbo.lisbon.game.achievements.progressions.*`.
+pub mod achievement_avatar_looks;
+pub mod achievement_email_verification;
+pub mod achievement_game_played;
+pub mod achievement_graduate;
+pub mod achievement_guide;
+pub mod achievement_habbo_club;
+pub mod achievement_happy_hour;
+pub mod achievement_login;
+pub mod achievement_motto;
+pub mod achievement_registration_duration;
+pub mod achievement_room_entry;
+pub mod achievement_student;
+pub mod achievement_tags;

@@ -1,0 +1,15 @@
+//! Mirrors `net.h4bbo.lisbon.game.item.interactors.types.*`.
+pub mod bed_interactor;
+pub mod chair_interactor;
+pub mod default_interactor;
+pub mod pet_food_interactor;
+pub mod pet_nest_interactor;
+pub mod pet_toy_interactor;
+pub mod pet_water_bowl_interactor;
+pub mod pool_booth_interactor;
+pub mod pool_interactor;
+pub mod pool_ladder_interactor;
+pub mod pool_lift_interactor;
+pub mod queue_tile_interactor;
+pub mod teleport_interactor;
+pub mod wobblesquabble;

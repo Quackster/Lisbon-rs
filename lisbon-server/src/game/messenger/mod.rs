@@ -1,0 +1,9 @@
+//! Mirrors `net.h4bbo.lisbon.game.messenger.*`.
+pub mod messenger;
+pub mod messenger_category;
+pub mod messenger_error;
+pub mod messenger_error_reason;
+pub mod messenger_error_type;
+pub mod messenger_manager;
+pub mod messenger_message;
+pub mod messenger_user;

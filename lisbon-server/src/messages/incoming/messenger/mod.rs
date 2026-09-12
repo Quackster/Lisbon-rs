@@ -1,0 +1,14 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.messenger.*`.
+pub mod finduser;
+pub mod follow_friend;
+pub mod friendlist_update;
+pub mod invite_friend;
+pub mod messenger_acceptbuddy;
+pub mod messenger_declinebuddy;
+pub mod messenger_getmessages;
+pub mod messenger_getrequests;
+pub mod messenger_init;
+pub mod messenger_markread;
+pub mod messenger_removebuddy;
+pub mod messenger_requestbuddy;
+pub mod messenger_sendmsg;

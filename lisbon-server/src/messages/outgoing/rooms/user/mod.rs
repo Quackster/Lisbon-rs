@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.messages.outgoing.rooms.user.*`.
+pub mod chat_message;
+pub mod figure_change;
+pub mod hotel_view;
+pub mod logout;
+pub mod tag_list;
+pub mod typing_status;
+pub mod user_objects;
+pub mod user_statuses;
+pub mod youarespectator;

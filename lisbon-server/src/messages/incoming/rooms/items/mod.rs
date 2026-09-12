@@ -1,0 +1,15 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.rooms.items.*`.
+pub mod addstripitem;
+pub mod convert_furni_to_credits;
+pub mod dice_off;
+pub mod g_idata;
+pub mod movestuff;
+pub mod placestuff;
+pub mod presentopen;
+pub mod removeitem;
+pub mod setitemdata;
+pub mod setitemstate;
+pub mod setstuffdata;
+pub mod spin_wheel_of_fortune;
+pub mod throw_dice;
+pub mod useitem;

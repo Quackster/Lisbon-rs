@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.navigator.*`.
+pub mod add_favorite_room;
+pub mod del_favorite_room;
+pub mod getfvrf;
+pub mod getspacenodeusers;
+pub mod getuserflatcats;
+pub mod navigate;
+pub mod recommended_rooms;
+pub mod srchf;
+pub mod suserf;

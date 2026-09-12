@@ -1,0 +1,88 @@
+//! Mirrors `net.h4bbo.lisbon.game.room.enums.StatusType`.
+
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum StatusType {
+    Move,
+    Sit,
+    Lay,
+    FlatControl,
+    Dance,
+    Swim,
+    CarryItem,
+    CarryDrink,
+    CarryFood,
+    UseItem,
+    UseFood,
+    UseDrink,
+    Wave,
+    Gesture,
+    Talk,
+    AvatarSleep,
+    Trade,
+    Sign,
+    Dead,
+    Jump,
+    PetSleep,
+    Eat,
+    Smile,
+    Play,
+}
+
+impl StatusType {
+    pub const ALL: [StatusType; 24] = [
+        StatusType::Move,
+        StatusType::Sit,
+        StatusType::Lay,
+        StatusType::FlatControl,
+        StatusType::Dance,
+        StatusType::Swim,
+        StatusType::CarryItem,
+        StatusType::CarryDrink,
+        StatusType::CarryFood,
+        StatusType::UseItem,
+        StatusType::UseFood,
+        StatusType::UseDrink,
+        StatusType::Wave,
+        StatusType::Gesture,
+        StatusType::Talk,
+        StatusType::AvatarSleep,
+        StatusType::Trade,
+        StatusType::Sign,
+        StatusType::Dead,
+        StatusType::Jump,
+        StatusType::PetSleep,
+        StatusType::Eat,
+        StatusType::Smile,
+        StatusType::Play,
+    ];
+
+    /// Mirrors `getStatusCode`.
+    pub fn status_code(&self) -> &'static str {
+        match self {
+            StatusType::Move => "mv",
+            StatusType::Sit => "sit",
+            StatusType::Lay => "lay",
+            StatusType::FlatControl => "flatctrl",
+            StatusType::Dance => "dance",
+            StatusType::Swim => "swim",
+            StatusType::CarryItem => "cri",
+            StatusType::CarryDrink => "carryd",
+            StatusType::CarryFood => "carryf",
+            StatusType::UseItem => "usei",
+            StatusType::UseFood => "eat",
+            StatusType::UseDrink => "drink",
+            StatusType::Wave => "wave",
+            StatusType::Gesture => "gest",
+            StatusType::Talk => "talk",
+            StatusType::AvatarSleep => "Sleep",
+            StatusType::Trade => "trd",
+            StatusType::Sign => "sign",
+            StatusType::Dead => "ded",
+            StatusType::Jump => "jmp",
+            StatusType::PetSleep => "slp",
+            StatusType::Eat => "eat",
+            StatusType::Smile => "sml",
+            StatusType::Play => "pla",
+        }
+    }
+}

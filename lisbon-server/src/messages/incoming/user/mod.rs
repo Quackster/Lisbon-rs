@@ -1,0 +1,13 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.user.*`.
+pub mod badges;
+pub mod settings;
+pub mod getavailablesets;
+pub mod get_credits;
+pub mod get_ignore_list;
+pub mod get_info;
+pub mod get_possible_achievements;
+pub mod ignore_user;
+pub mod pong;
+pub mod test_latency;
+pub mod unignore_user;
+pub mod update;

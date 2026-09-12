@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.game.games.snowstorm.events.*`.
+pub mod snow_storm_avatar_move_event;
+pub mod snow_storm_create_snowball_event;
+pub mod snow_storm_delete_object_event;
+pub mod snow_storm_hit_event;
+pub mod snow_storm_launch_snowball_event;
+pub mod snow_storm_machine_add_snowball_event;
+pub mod snow_storm_machine_move_snowballs_event;
+pub mod snow_storm_stun_event;
+pub mod snow_storm_throw_event;

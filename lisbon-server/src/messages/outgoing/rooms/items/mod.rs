@@ -1,0 +1,14 @@
+//! Mirrors `net.h4bbo.lisbon.messages.outgoing.rooms.items.*`.
+pub mod broadcast_teleporter;
+pub mod dice_value;
+pub mod idata;
+pub mod item_delivered;
+pub mod move_flooritem;
+pub mod place_flooritem;
+pub mod place_wallitem;
+pub mod remove_flooritem;
+pub mod remove_wallitem;
+pub mod show_program;
+pub mod slide_objectbundle;
+pub mod stuff_data_update;
+pub mod teleporter_init;

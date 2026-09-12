@@ -1,0 +1,42 @@
+[package]
+name = "lisbon-server"
+description = "Lisbon Habbo Hotel V26 emulation server (Rust port)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+argon2 = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+chrono = { workspace = true }
+rand = { workspace = true }
+num-bigint = { workspace = true }
+num-integer = { workspace = true }
+num-traits = { workspace = true }
+arc-swap = { workspace = true }
+parking_lot = { workspace = true }
+sqlx = { workspace = true }
+async-trait = { workspace = true }
+futures = { workspace = true }
+hex = { workspace = true }
+sha1 = { workspace = true }
+md-5 = { workspace = true }
+base64 = { workspace = true }
+regex = { workspace = true }
+thiserror = { workspace = true }
+lazy_static = { workspace = true }
+roxmltree = { workspace = true }
+unicode-normalization = { workspace = true }
+
+[[bin]]
+name = "lisbon-server"
+path = "src/main.rs"
+
+[lib]
+name = "lisbon_server"
+path = "src/lib.rs"

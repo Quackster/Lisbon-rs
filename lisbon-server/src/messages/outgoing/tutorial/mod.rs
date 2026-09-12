@@ -1,0 +1,9 @@
+//! Mirrors `net.h4bbo.lisbon.messages.outgoing.tutorial.*`.
+pub mod enable_tutor_service_status;
+pub mod guide_found;
+pub mod invitation_sent;
+pub mod invite_cancelled;
+pub mod invite_follow_failed;
+pub mod inviting_completed;
+pub mod tutorial_configuration;
+pub mod tutors_available;

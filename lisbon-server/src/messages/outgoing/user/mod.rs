@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.messages.outgoing.user.*`.
+pub mod badges;
+pub mod currencies;
+pub mod ignored_list;
+pub mod ignore_user_result;
+pub mod latency;
+pub mod ping;
+pub mod possible_achievements;
+pub mod settings;
+pub mod user_object;

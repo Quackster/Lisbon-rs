@@ -1,0 +1,11 @@
+//! Mirrors `net.h4bbo.lisbon.messages.outgoing.navigator.*`.
+pub mod cantconnect;
+pub mod favouriteroomresults;
+pub mod flat_noresults;
+pub mod flat_results;
+pub mod navnodeinfo;
+pub mod nodespaceusers;
+pub mod noflats;
+pub mod noflatsforuser;
+pub mod recommended_room_list;
+pub mod userflatcats;

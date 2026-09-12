@@ -1,0 +1,9 @@
+//! Mirrors `net.h4bbo.lisbon.game.item.*`.
+pub mod base;
+pub mod interactors;
+pub mod item;
+pub mod item_manager;
+pub mod photo;
+pub mod public_items;
+pub mod roller;
+pub mod transaction;

@@ -1,0 +1,14 @@
+//! Mirrors `net.h4bbo.lisbon.messages.incoming.songs.*`.
+pub mod burn_song;
+pub mod delete_song;
+pub mod edit_song;
+pub mod eject_sound_package;
+pub mod get_play_list;
+pub mod get_song_info;
+pub mod get_song_list;
+pub mod insert_sound_package;
+pub mod new_song;
+pub mod save_song;
+pub mod save_song_edit;
+pub mod save_song_new;
+pub mod update_play_list;

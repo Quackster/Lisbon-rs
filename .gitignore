@@ -1,0 +1,19 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+
+# IDE
+/.idea
+/.vscode
+*.iml
+
+# Local config overrides
+/config/server.local.toml
+
+# Logs
+/logs/
+
+# OS
+.DS_Store
+Cargo.lock
+config/server.toml

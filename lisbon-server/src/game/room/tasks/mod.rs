@@ -1,0 +1,15 @@
+//! Mirrors `net.h4bbo.lisbon.game.room.tasks.*`.
+pub mod bot_task;
+pub mod camera_task;
+pub mod dice_task;
+pub mod entity_task;
+pub mod fortune_task;
+pub mod pet_task;
+pub mod rainbow_task;
+pub mod roller_complete_task;
+pub mod roller_task;
+pub mod space_cafe_task;
+pub mod status_task;
+pub mod teleporter_task;
+pub mod tick_task;
+pub mod wave_task;

@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.game.games.snowstorm.*`.
+pub mod events;
+pub mod mapping;
+pub mod messages;
+pub mod objects;
+pub mod snow_storm_game;
+pub mod snow_storm_turn;
+pub mod snowstorm_maps_manager;
+pub mod tasks;
+pub mod util;

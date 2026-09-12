@@ -1,0 +1,10 @@
+//! Mirrors `net.h4bbo.lisbon.game.games.battleball.*`.
+pub mod battle_ball_game;
+pub mod battle_ball_map;
+pub mod battle_ball_power_up;
+pub mod battle_ball_task;
+pub mod battle_ball_tile;
+pub mod enums;
+pub mod events;
+pub mod objects;
+pub mod powerups;
