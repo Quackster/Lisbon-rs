@@ -470,11 +470,22 @@ impl WebServer {
         let body = body.collect().await.unwrap_or_default().to_bytes();
 
         let request = http::Request::from_parts(parts, Vec::from(body));
-        let connection = WebConnection::from_request(&request, Some(peer.ip().to_string()));
+        let peer_ip = peer.ip().to_string();
 
-        RouteManager::get_instance().invoke(&connection);
+        // The route handlers are synchronous and reach the DAOs, which
+        // `block_on` the dedicated storage runtime; that panics when the
+        // current thread is an async worker, so run the whole per-request work
+        // on the blocking pool. `WebConnection` uses `RefCell` (not `Send`),
+        // so it is created inside the blocking closure.
+        tokio::task::spawn_blocking(move || {
+            let connection = WebConnection::from_request(&request, Some(peer_ip));
 
-        Self::to_axum_response(&connection)
+            RouteManager::get_instance().invoke(&connection);
+
+            Self::to_axum_response(&connection)
+        })
+        .await
+        .expect("web request blocking task panicked")
     }
 
     fn to_axum_response(connection: &WebConnection) -> http::Response<axum::body::Body> {

@@ -168,9 +168,18 @@ impl ConnectionHandler {
                 match request {
                     Some(mut request) => {
                         // Phase 2: dispatch (a separate, non-re-entrant lock).
-                        let mut player_guard = player.lock();
-                        MessageHandler::get_instance()
-                            .handle_request(&mut *player_guard, &mut request);
+                        // The handler chain reaches the DAOs, which `block_on`
+                        // the dedicated storage runtime; that panics when the
+                        // current thread is an async worker, so run it on the
+                        // blocking pool (a blocking-pool thread is not a
+                        // runtime worker thread).
+                        let player = player.clone();
+                        let _ = tokio::task::spawn_blocking(move || {
+                            let mut player_guard = player.lock();
+                            MessageHandler::get_instance()
+                                .handle_request(&mut *player_guard, &mut request);
+                        })
+                        .await;
                     }
                     None => break,
                 }

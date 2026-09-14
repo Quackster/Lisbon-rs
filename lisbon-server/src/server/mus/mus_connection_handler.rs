@@ -74,7 +74,7 @@ impl MusConnectionHandler {
         }
 
         let (write_tx, mut write_rx) = mpsc::unbounded_channel::<Vec<u8>>();
-        let mut client = MusClient::new(write_tx);
+        let client = MusClient::new(write_tx);
 
         let (mut read, mut write) = stream.into_split();
 
@@ -89,6 +89,12 @@ impl MusConnectionHandler {
         // channelRead0 (loop)
         let mut buf: Vec<u8> = Vec::new();
         let mut chunk = vec![0u8; 65536];
+        // `client` / `buf` must be handed to the blocking task and returned, so
+        // they are held in an `Option` (client is not `Default`) / taken with
+        // `mem::take` (the buffer is) to avoid the moved-then-reassigned
+        // ownership problem across the `await`.
+        let mut client_opt: Option<MusClient> = Some(client);
+        let peer_ip_owned = peer_ip.clone();
         loop {
             match read.read(&mut chunk).await {
                 Ok(0) => break,
@@ -99,16 +105,38 @@ impl MusConnectionHandler {
                 }
             }
 
-            let mut should_close = false;
-            loop {
-                match MusNetworkDecoder::decode(&mut buf) {
-                    Some((message, close)) => {
-                        should_close = should_close || close;
-                        should_close = should_close || Self::handle_message(&mut client, &message, &peer_ip);
+            // Decode + dispatch on a blocking thread: the handlers reach the
+            // DAOs, which `block_on` the dedicated storage runtime, and that
+            // panics on a runtime worker thread.
+            let mut client = client_opt
+                .take()
+                .expect("MUS client is present until the connection closes");
+            let mut buffered = std::mem::take(&mut buf);
+            let peer_ip_for_task = peer_ip_owned.clone();
+            let (returned_client, should_close, residual_buf) =
+                tokio::task::spawn_blocking(move || {
+                    let mut should_close = false;
+                    loop {
+                        match MusNetworkDecoder::decode(&mut buffered) {
+                            Some((message, close)) => {
+                                should_close = should_close || close;
+                                should_close =
+                                    should_close
+                                        || Self::handle_message(
+                                            &mut client,
+                                            &message,
+                                            &peer_ip_for_task,
+                                        );
+                            }
+                            None => break,
+                        }
                     }
-                    None => break,
-                }
-            }
+                    (client, should_close, buffered)
+                })
+                .await
+                .expect("MUS dispatch blocking task panicked");
+            client_opt = Some(returned_client);
+            buf = residual_buf;
             if should_close {
                 break;
             }

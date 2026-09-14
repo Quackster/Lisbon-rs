@@ -92,7 +92,13 @@ impl RconConnectionHandler {
 
             loop {
                 if let Some(message) = RconNetworkDecoder::decode(&mut buf) {
-                    let _ = Self::handle_message(&message);
+                    // Run the (synchronous) handler on a blocking thread: it
+                    // reaches the DAOs, which `block_on` the dedicated storage
+                    // runtime, and that panics on a runtime worker thread.
+                    let _ = tokio::task::spawn_blocking(move || {
+                        Self::handle_message(&message)
+                    })
+                    .await;
                 } else {
                     break;
                 }

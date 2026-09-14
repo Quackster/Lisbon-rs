@@ -221,17 +221,33 @@ impl Lisbon {
         tokio::spawn(MusServer::get_instance().start());
         tokio::spawn(RconServer::get_instance().start());
 
-        // Keep the runtime alive (mirrors the non-daemon Netty event loops)
-        // and run `dispose` on Ctrl-C.
+        // The Java shutdown hook fires on both SIGINT and SIGTERM, so a plain
+        // `kill <pid>` (SIGTERM) must also trigger a clean shutdown, not just
+        // Ctrl-C. Register the SIGTERM handler and select on it alongside
+        // `ctrl_c()`.
+        let mut sigterm =
+            tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+                .expect("failed to register the SIGTERM handler");
+
+        // Keep the runtime alive (mirrors the non-daemon Netty event loops).
         tokio::select! {
             _ = tokio::signal::ctrl_c() => {
-                // `dispose` performs synchronous DB work (`block_on` on the
-                // storage runtime); run it off the async context.
-                let _ = tokio::task::spawn_blocking(|| Self::dispose())
-                    .await;
+                Self::shutdown().await;
+            }
+            _ = sigterm.recv() => {
+                Self::shutdown().await;
             }
             _ = std::future::pending::<()>() => {}
         }
+    }
+
+    /// Runs `dispose` off the async context.
+    ///
+    /// `dispose` performs synchronous DB work (`block_on` on the storage
+    /// runtime), which panics when the current thread is an async worker, so
+    /// it is dispatched onto the blocking pool.
+    async fn shutdown() {
+        let _ = tokio::task::spawn_blocking(|| Self::dispose()).await;
     }
 
     /// Mirrors `resolveServerConfigPath`.
